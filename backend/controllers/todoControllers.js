@@ -2,7 +2,7 @@ const getTodo = (req, res) => {
   res.status(200).json({ message: "Hello from getTodo" });
 };
 
-const createTodo = async (req, res) => {
+const createTodo = (req, res) => {
   console.log(req.body);
   if (!req.body?.text) {
     res.status(400);
