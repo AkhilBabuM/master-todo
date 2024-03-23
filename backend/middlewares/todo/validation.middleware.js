@@ -1,4 +1,4 @@
-import ErrorResponse from "../error/errorResponse.js";
+import ErrorResponse from "../../error/errorResponse.js";
 
 // Checking if "title, description, completed" are passed in request body
 export const checkInputs = (req, res, next) => {

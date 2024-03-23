@@ -5,7 +5,9 @@ import { updateTodoService } from "../../services/todo.service.js";
 export const updateTodo = asyncHandler(async (req, res) => {
   const id = req.params.id;
   const body = req.body;
-  const updatedTodo = await updateTodoService(id, body)
+  const updatedTodo = await updateTodoService(id, body);
 
-  res.status(200).json({ message: "Hello from updateTodo", data: updatedTodo });
+  res
+    .status(200)
+    .json({ message: "Hello from updateTodo", id: id, data: updatedTodo });
 });
