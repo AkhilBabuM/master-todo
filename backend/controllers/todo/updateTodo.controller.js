@@ -7,5 +7,5 @@ export const updateTodo = asyncHandler(async (req, res) => {
   const body = req.body;
   const updatedTodo = await updateTodoService(id, body)
 
-  res.status(200).json({ message: "Hello from updateTodo", todo: updatedTodo });
+  res.status(200).json({ message: "Hello from updateTodo", data: updatedTodo });
 });
