@@ -1,4 +1,3 @@
-import Todo from "../../models/todo.model.js";
 import asyncHandler from "express-async-handler";
 import { deleteTodoService } from "../../services/todo.service.js";
 
@@ -6,7 +5,7 @@ import { deleteTodoService } from "../../services/todo.service.js";
 export const deleteTodo = asyncHandler(async (req, res) => {
   const id = req.params.id;
 
-  await deleteTodoService(Todo,id)
+  await deleteTodoService(id)
   
   res
     .status(200)
