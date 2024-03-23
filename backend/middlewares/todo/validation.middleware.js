@@ -1,6 +1,6 @@
 import ErrorResponse from "../../error/errorResponse.js";
 
-// Checking if "title, description, completed" are passed in request body
+// Checks if "title, description, completed" are passed in request body
 export const checkInputs = (req, res, next) => {
   if (!req.body?.title) {
     throw ErrorResponse.badRequest("Please add a title field");
