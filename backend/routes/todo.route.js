@@ -16,12 +16,12 @@ const todoRouter = express.Router();
 
 todoRouter
   .route("/")
-  .get(getTodo)
-  .post(ensureAuthorized,checkInputs, createTodo);
+  .get(ensureAuthorized, getTodo)
+  .post(ensureAuthorized, checkInputs, createTodo);
 
 todoRouter
   .route("/:id")
-  .put(checkInputs, updateTodo)
-  .delete(deleteTodo);
+  .put(ensureAuthorized, checkInputs, updateTodo)
+  .delete(ensureAuthorized, deleteTodo);
 
 export default todoRouter;
