@@ -1,19 +1,23 @@
 import express from "express";
 
-// importing controllers
+// imports controllers
 import { getTodo } from "../controllers/todo/getTodo.controller.js";
 import { createTodo } from "../controllers/todo/createTodo.controller.js";
 import { updateTodo } from "../controllers/todo/updateTodo.controller.js";
 import { deleteTodo } from "../controllers/todo/deleteTodo.controller.js";
 
-// importing validation middleware
+// imports validation middleware
 import { checkInputs } from "../middlewares/todo/validation.middleware.js";
+
+// imports Authentication Middleware
+import { ensureAuthorized } from "../middlewares/auth.middleware.js";
+
 const todoRouter = express.Router();
 
 todoRouter
   .route("/")
   .get(getTodo)
-  .post(checkInputs, createTodo);
+  .post(ensureAuthorized,checkInputs, createTodo);
 
 todoRouter
   .route("/:id")
