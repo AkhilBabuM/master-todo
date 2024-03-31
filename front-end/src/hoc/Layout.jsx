@@ -1,7 +1,7 @@
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { Outlet } from "react-router-dom";
-const Layout = ({ children }) => {
+const Layout = () => {
   return (
     <div className="flex flex-col min-h-screen items-center justify-between">
       <Header/>

@@ -26,24 +26,28 @@ const SignupPage = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     if (password !== repeatpass) {
-      console.log("Passwords no not match");
+      // console.log("Passwords no not match");
       setMessage("Passwords do not match, Try again");
     } else {
       setMessage("");
-      console.log(formData);
+      // console.log(formData);
       try {
         const response = await axios.post(
           "http://localhost:2111/api/v1/user/signup", formData
         );
-        console.log("This is the Token: ",response.data.token);
+        // console.log("This is the Token: ",response.data.token);
         setMessage(response.data.message.toString()+", Redirecting...")
         setTimeout(() => {
           navigate('/login')
         }, 1000);
       } catch (error) {
-        console.log(error);
-        console.log(error.response.data.message.toString())
-        setMessage(error.response.data.message.toString() + ", Try Again")
+        if (error.response) {
+          setMessage(error.response.data.message.toString() + ", Try Again");
+        } else if (error.request) {
+          setMessage("No response from server. Please try again later.");
+        } else {
+          setMessage("An error occurred. Please try again later.");
+        }
       }
     }
   };
