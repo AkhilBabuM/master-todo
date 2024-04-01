@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import InputBox from "../components/InputBox";
 import Button from "../components/Button";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { removeToken } from "../store/slices/authSlice";
 
 const SignupPage = () => {
   const navigate = useNavigate();
@@ -14,9 +16,15 @@ const SignupPage = () => {
     repeatpass: "",
   });
 
+  const dispatch = useDispatch();
+
   const [message, setMessage] = useState("");
 
   const { name, email, password, repeatpass } = formData;
+
+  useEffect(() => {
+    dispatch(removeToken());
+  }, []);
 
   const onChange = (e) => {
     const { name, value } = e.target;

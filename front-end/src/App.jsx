@@ -7,6 +7,7 @@ import Protected from "./hoc/Protected";
 import TodoPage from "./pages/TodoPage";
 
 function App() {
+  
   return (
     <div>
       <BrowserRouter>
@@ -15,9 +16,9 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route path="login" element={<LoginPage />} />
             <Route path="signup" element={<SignupPage />} />
-          </Route>
-          <Route path="/" element={<Protected/>}>
-            <Route path="todo" element={<TodoPage/>}></Route>
+            <Route path="app/" element={<Protected />}>
+              <Route path="todo" element={<TodoPage />} />
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>

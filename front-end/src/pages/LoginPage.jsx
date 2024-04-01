@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import InputBox from "../components/InputBox";
 import Button from "../components/Button";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { addToken, removeToken } from "../store/slices/authSlice";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -16,10 +18,16 @@ const LoginPage = () => {
 
   const { email, password } = formData;
 
+  const dispatch = useDispatch();
+
   const onChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
+
+  useEffect(() => {
+    dispatch(removeToken());
+  }, []);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -32,8 +40,9 @@ const LoginPage = () => {
       );
       // console.log("This is the Token: ", response.data.token);
       setMessage(response.data.message.toString() + ", Redirecting...");
-      localStorage.setItem("user", response.data.token.toString());
-      setTimeout(() => navigate("/todo"), 1000);
+      dispatch(addToken(response.data.token.toString()));
+      // localStorage.setItem("user", response.data.token.toString());
+      setTimeout(() => navigate("/app/todo"), 1000);
     } catch (error) {
       if (error.response) {
         setMessage(error.response.data.message.toString() + ", Try Again");
