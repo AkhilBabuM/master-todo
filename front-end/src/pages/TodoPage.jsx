@@ -20,7 +20,6 @@ const TodoPage = () => {
       setRes(data); // assuming the data you want is in response.data
       console.log("The response is: ",typeof(data))
     };
-  
     fetchData();
   },[])
 

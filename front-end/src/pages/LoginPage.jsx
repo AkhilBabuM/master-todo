@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import InputBox from "../components/InputBox";
 import Button from "../components/Button";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToken, removeToken } from "../store/slices/authSlice";
 
 const LoginPage = () => {
@@ -25,8 +25,10 @@ const LoginPage = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const token = useSelector((state)=>state.auth.token)
+
   useEffect(() => {
-    dispatch(removeToken());
+    if(token) navigate('/app/todo')
   }, []);
 
   const onSubmit = async (e) => {

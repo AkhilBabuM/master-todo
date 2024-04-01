@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import InputBox from "../components/InputBox";
 import Button from "../components/Button";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { removeToken } from "../store/slices/authSlice";
 
 const SignupPage = () => {
@@ -22,8 +22,10 @@ const SignupPage = () => {
 
   const { name, email, password, repeatpass } = formData;
 
+  const token = useSelector((state)=>state.auth.token)
+
   useEffect(() => {
-    dispatch(removeToken());
+    if(token) navigate('/app/todo')
   }, []);
 
   const onChange = (e) => {
